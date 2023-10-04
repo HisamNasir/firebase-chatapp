@@ -1,6 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer base{
+  body {
+      @apply dark:bg-gray-800 bg-white
+  }
+}
 
 /* :root {
   --foreground-rgb: 0, 0, 0;

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { app } from "../firebase";
+import { app } from "@/context/Firebase"
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,7 +16,7 @@ const Login = () => {
 
   return (
     <div className=" flex p-10 flex-col h-screen justify-center items-center min-w-max">
-      <div className="bg-slate-100 p-5 text-sm w-full max-w-lg rounded-xl space-y-4">
+      <div className="bg-slate-200 dark:bg-slate-900 p-5 text-sm w-full max-w-lg rounded-xl space-y-4">
         <h1 className=" text-lg font-bold">Login</h1>
         <div className=" space-y-1">
           <div className=" text-base">Email</div>
