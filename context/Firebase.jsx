@@ -1,8 +1,7 @@
-import React,{ createContext, useContext } from "react";
-import {initializeApp} from 'firebase/app'
-import { getAuth,createUserWithEmailAndPassword } from "firebase/auth";
-import { getDatabase } from "firebase/database";
-
+import React, { createContext, useContext } from 'react';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/database'; // or 'firebase/firestore' if you're using Firestore
 
 const firebaseConfig = {
     
@@ -24,30 +23,21 @@ const firebaseConfig = {
     
 };
 
-const firebaseApp=initializeApp(firebaseConfig);
-const firebaseAuth=getAuth(firebaseApp);
-const database=getDatabase(firebaseApp);
-const FirebaseContext = createContext(null);
 
-export const useFirebase=()=>useContext(FirebaseContext);
 
-export const FirebaseProvider=(props)=>{
-    const signupUserWithEmailAndPassword =(email,password)=>{
-        return createUserWithEmailAndPassword(firebaseAuth, email, password)
-        .then((userCredential) => {
-          // Handle successful user creation here
-          const user = userCredential.user;
-          console.log("User created:", user);
-        })
-        .catch((error) => {
-          // Handle errors here
-          console.error("Error creating user:", error);
-        });
-    };
-    const putData=(key,data)=>set(ref(database,key),data);
-    return(
-        <FirebaseContext.Provider value={{signupUserWithEmailAndPassword,putData }}>
-            {props.children}
-        </FirebaseContext.Provider>
-    )
-}
+// if (!firebase.apps.length) {
+//     firebase.initializeApp(firebaseConfig);
+//   }
+  
+  // Create a Firebase context
+  const FirebaseContext = createContext();
+  
+  // Firebase provider component
+  export function FirebaseProvider({ children }) {
+    return <FirebaseContext.Provider value={firebase}>{children}</FirebaseContext.Provider>;
+  }
+  
+  // Custom hook to use Firebase throughout your app
+  export function useFirebase() {
+    return useContext(FirebaseContext);
+  }

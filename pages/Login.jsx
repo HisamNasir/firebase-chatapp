@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { app } from "@/context/Firebase"
+import { app } from "@/firebase"
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

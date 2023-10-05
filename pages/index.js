@@ -1,19 +1,33 @@
+import { useEffect, useState } from "react";
 
-import { Inter } from "next/font/google";
 import Login from "./Login";
-import {} from "react-icons/fa";
-import DarkModButton from "@/components/DarkModButton";
-const inter = Inter({ subsets: ["latin"] });
+import Layout from "@/components/Layout";
+
+// const auth = getAuth(app);
 
 export default function Home() {
+  // const [user, setUser] = useState(null);
 
+  // useEffect(() => {
+  //   onAuthStateChanged(auth, (user) => {
+  //     if (user) {
+  //       setUser(user);
+  //     } else {
+  //       setUser(null);
+  //     }
+  //   });
+  // }, []);
+
+  // Conditional rendering based on the user's authentication status
   return (
-    <main className="h-screen tracking-wider min-w-min">
-      <div>
-       <DarkModButton/>
-      </div>
+    <Layout className="h-screen tracking-wider min-w-min">
+      {/* {user ? ( */}
+        {/* // Render the HomePage component only when the user is logged in */}
+        {/* <HomePage /> */}
+      {/* ) : ( */}
+        {/* // Render the Login component when the user is not logged in */}
         <Login />
-
-    </main>
+      {/* )} */}
+    </Layout>
   );
 }

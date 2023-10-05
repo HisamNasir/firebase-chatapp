@@ -3,25 +3,17 @@ import React, { useState } from "react";
 import { FaUser } from "react-icons/fa";
 // import { app } from "../firebase";
 // import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { useFirebase } from "@/context/Firebase";
+import { useFirebase } from "@/firebase";
 
 
 
 
 const Signup = () => {
-  const firebase=useFirebase();
-  console.log("Firebase",firebase)
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-//   const auth=getAuth(app);
-//   console.log(auth?.currentUser?.email);
-//   const signIn = async () => {
-//     try {
-//       await createUserWithEmailAndPassword(auth, email, password);
-//     } catch (err) {
-//       console.error(err);
-//     }
-//   };
+  // const firebase=useFirebase();
+  // console.log("Firebase",firebase)
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+
 
   //   profile picture
   const [selectedFile, setSelectedFile] = useState(null);
@@ -64,7 +56,7 @@ const Signup = () => {
               type="file"
               id="file"
               className="w-full bg-gray-600 my-10 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-yellow-900 rounded border border-gray-600 focus:border-yellow-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-              // onChange={handleFileInputChange}
+              onChange={handleFileInputChange}
             />
           </div>
         </div>
@@ -115,7 +107,10 @@ const Signup = () => {
           </p>
         </div>
         <button
-         onClick={()=>firebase.signupUserWithEmailAndPassword(email,password)}
+         onClick={()=>{
+          firebase.signupUserWithEmailAndPassword(email,password)
+          firebase.putData('users')
+        }}
          className=" w-full rounded-md p-2 text-center bg-slate-600 text-white hover:bg-slate-700 duration-500 transition-colors">
           Signup
         </button>
