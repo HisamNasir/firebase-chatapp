@@ -1,33 +1,17 @@
-import { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { isLoggedInUser } from "@/redux/actions";
+import "firebase/auth";
+import HomePage from "./HomePage";
 
-import Login from "./Login";
-import Layout from "@/components/Layout";
+const Home = () => {
+  const dispatch = useDispatch();
 
-// const auth = getAuth(app);
+  useEffect(() => {
+    dispatch(isLoggedInUser());
+  }, []);
 
-export default function Home() {
-  // const [user, setUser] = useState(null);
+  return <HomePage />;
+};
 
-  // useEffect(() => {
-  //   onAuthStateChanged(auth, (user) => {
-  //     if (user) {
-  //       setUser(user);
-  //     } else {
-  //       setUser(null);
-  //     }
-  //   });
-  // }, []);
-
-  // Conditional rendering based on the user's authentication status
-  return (
-    <Layout className="h-screen tracking-wider min-w-min">
-      {/* {user ? ( */}
-        {/* // Render the HomePage component only when the user is logged in */}
-        {/* <HomePage /> */}
-      {/* ) : ( */}
-        {/* // Render the Login component when the user is not logged in */}
-        <Login />
-      {/* )} */}
-    </Layout>
-  );
-}
+export default Home;
