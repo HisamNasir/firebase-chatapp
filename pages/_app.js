@@ -1,6 +1,7 @@
 import { Provider } from "react-redux";
 import store from "@/redux/store";
 import HomePage from "./HomePage";
+import LoginPage from "./LoginPage";
 import SignupPage from "./SignupPage";
 import { useRouter } from "next/router";
 import firebase from "firebase/app";
